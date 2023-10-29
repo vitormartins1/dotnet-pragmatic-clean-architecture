@@ -6,7 +6,7 @@ using Dapper;
 
 namespace Bookify.Application.Apartments.SearchApartments;
 
-internal sealed class SearchApartmentQueryHandler 
+internal sealed class SearchApartmentsQueryHandler 
     : IQueryHandler<SearchApartmentsQuery, IReadOnlyList<ApartmentResponse>>
 {
     private static readonly int[] ActiveBookingStatuses =
@@ -18,7 +18,7 @@ internal sealed class SearchApartmentQueryHandler
 
     private readonly ISqlConnectionFactory _connectionFactory;
 
-    public SearchApartmentQueryHandler(ISqlConnectionFactory connectionFactory)
+    public SearchApartmentsQueryHandler(ISqlConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
@@ -47,7 +47,7 @@ internal sealed class SearchApartmentQueryHandler
                 a.address_city AS City,
                 a.address_street AS Street
             FROM
-                apartment AS a
+                apartments AS a
             WHERE NOT EXISTS
             (
                 SELECT 1
